@@ -1,0 +1,307 @@
+[
+  {
+    "id": "pricing_01",
+    "category": "Pricing & Purchase",
+    "question": "What models of DOSTBin are available and what is their pricing?",
+    "answer": "We offer three main models: DOSTBin Popular (Manual): ₹24,999 (plus GST). DOSTBin Premium (Automatic): ₹34,999 (plus GST). DOSTBin Twin Composter (Bulk/Community): ₹74,999 (plus GST).",
+    "keywords": [
+      "models",
+      "pricing",
+      "price",
+      "cost",
+      "popular",
+      "premium",
+      "twin composter"
+    ]
+  },
+  {
+    "id": "pricing_02",
+    "category": "Pricing & Purchase",
+    "question": "How do I pre-book a DOSTBin and what are the payment options?",
+    "answer": "You can pre-book any model on our website with a ₹2,000 deposit. We accept Bank Transfers and QR Code payments. Cash on Delivery (COD) is only available if you pick up the unit directly from our Bangalore office.",
+    "keywords": [
+      "pre-book",
+      "booking",
+      "deposit",
+      "payment",
+      "bank transfer",
+      "QR code",
+      "COD"
+    ]
+  },
+  {
+    "id": "pricing_03",
+    "category": "Pricing & Purchase",
+    "question": "How long does delivery take and what are the shipping costs?",
+    "answer": "Bins are usually dispatched within a week of pre-booking, and our newer Version 2.0 has no waiting period for dispatch. Shipping typically costs between ₹1,000 and ₹2,000, which will be confirmed at the time of dispatch.",
+    "keywords": [
+      "delivery",
+      "shipping",
+      "dispatch",
+      "shipping cost",
+      "Version 2.0"
+    ]
+  },
+  {
+    "id": "pricing_04",
+    "category": "Pricing & Purchase",
+    "question": "Can I see a demo before purchasing?",
+    "answer": "Absolutely! Demo videos for all variants are available on our website and our YouTube channel (@dostbin). You can also visit our office in Yelahanka, Bangalore, for a physical demonstration.",
+    "keywords": [
+      "demo",
+      "demonstration",
+      "visit",
+      "youtube",
+      "office"
+    ]
+  },
+  {
+    "id": "product_01",
+    "category": "Product Features & Operations",
+    "question": "What is the difference between the Popular and Premium models?",
+    "answer": "The Popular model is manual and requires turning a handle for 2 minutes daily. The Premium model is fully motorized, app-enabled, and automates 6-hourly aeration cycles for effortless composting. Both follow a simple three-step process: Feed, Digest, and Harvest.",
+    "keywords": [
+      "popular",
+      "premium",
+      "manual",
+      "automatic",
+      "motorized",
+      "app",
+      "aeration",
+      "Feed Digest Harvest"
+    ]
+  },
+  {
+    "id": "product_02",
+    "category": "Product Features & Operations",
+    "question": "What is the capacity of the standard DOSTBin units?",
+    "answer": "Standard models can handle up to 5 kgs of waste per day, totaling about 35 kgs per week. This ensures you have zero dependency on external municipal waste collection for organic matter.",
+    "keywords": [
+      "capacity",
+      "waste",
+      "kg",
+      "daily",
+      "weekly",
+      "5 kg",
+      "35 kg"
+    ]
+  },
+  {
+    "id": "product_03",
+    "category": "Product Features & Operations",
+    "question": "How much space is required for installation?",
+    "answer": "Standard models are highly compact, requiring only 2 × 2 ft of floor space and a height of 3 ft. They are plug-and-play devices perfect for balconies, utility spaces, or parking spots.",
+    "keywords": [
+      "space",
+      "installation",
+      "balcony",
+      "utility",
+      "parking",
+      "2 x 2 ft",
+      "3 ft"
+    ]
+  },
+  {
+    "id": "product_04",
+    "category": "Product Features & Operations",
+    "question": "How much electricity do the automatic models consume?",
+    "answer": "They are highly energy-efficient. The Premium model uses less than 5 units per month. The larger Twin Composter uses approximately 10 units per month.",
+    "keywords": [
+      "electricity",
+      "power",
+      "energy",
+      "units",
+      "monthly",
+      "Premium",
+      "Twin Composter"
+    ]
+  },
+  {
+    "id": "composting_01",
+    "category": "The Composting Process & Outputs",
+    "question": "How long does it take to get compost?",
+    "answer": "A complete cycle takes 14–20 days. However, the stage-wise design allows you to harvest fresh compost every 10–12 days.",
+    "keywords": [
+      "compost",
+      "time",
+      "days",
+      "cycle",
+      "harvest",
+      "10 days",
+      "20 days"
+    ]
+  },
+  {
+    "id": "composting_02",
+    "category": "The Composting Process & Outputs",
+    "question": "What kind of outputs do I get?",
+    "answer": "You receive solid natural compost and a concentrated liquid fertilizer. The liquid fertilizer must be diluted with water at a 1:15 ratio before applying it to your plants.",
+    "keywords": [
+      "output",
+      "compost",
+      "liquid fertilizer",
+      "fertilizer",
+      "1:15",
+      "plants"
+    ]
+  },
+  {
+    "id": "composting_03",
+    "category": "The Composting Process & Outputs",
+    "question": "What items should I avoid putting in the bin?",
+    "answer": "Do not add dairy, oil-based inputs, meat, bones, or large seeds (like mango seeds). These inhibit aerobic microbes and can damage the shredder blades over time.",
+    "keywords": [
+      "what not to add",
+      "dairy",
+      "oil",
+      "meat",
+      "bones",
+      "mango seeds",
+      "food waste"
+    ]
+  },
+  {
+    "id": "composting_04",
+    "category": "The Composting Process & Outputs",
+    "question": "Will the bin smell or attract pests?",
+    "answer": "No. The design ensures proper moisture control, and DOSTBin utilizes Remix Powder, cocopeat powder, and Activated Charcoal to keep the process 100% hygienic and odor-free, leaving only an earthy smell.",
+    "keywords": [
+      "smell",
+      "odor",
+      "pests",
+      "flies",
+      "hygiene",
+      "cocopeat",
+      "Activated Charcoal"
+    ]
+  },
+  {
+    "id": "maintenance_01",
+    "category": "Maintenance, Running Costs & Warranty",
+    "question": "What are the monthly running costs for composting?",
+    "answer": "Monthly maintenance is extremely affordable, typically costing between ₹100 and ₹200 for necessary supplies. A 6-month Combo Pack of accessories is also available for ₹780 (inclusive of GST).",
+    "keywords": [
+      "maintenance",
+      "running cost",
+      "monthly cost",
+      "accessories",
+      "combo pack",
+      "₹100",
+      "₹200",
+      "₹780"
+    ]
+  },
+  {
+    "id": "maintenance_02",
+    "category": "Maintenance, Running Costs & Warranty",
+    "question": "Is there a warranty on DOSTBin products?",
+    "answer": "Yes. The Premium model comes with a 6-month guarantee on electrical and electronic parts. The physical bins are constructed with strong polymers and stainless steel, designed to last over 10 years.",
+    "keywords": [
+      "warranty",
+      "guarantee",
+      "Premium",
+      "electrical",
+      "electronic",
+      "10 years"
+    ]
+  },
+  {
+    "id": "maintenance_03",
+    "category": "Maintenance, Running Costs & Warranty",
+    "question": "When will I see a Return on Investment (ROI)?",
+    "answer": "The machine pays for itself in just 2–3 years through the value of the produced fertilizer and savings on external waste disposal.",
+    "keywords": [
+      "ROI",
+      "return on investment",
+      "payback",
+      "2 years",
+      "3 years",
+      "savings"
+    ]
+  },
+  {
+    "id": "bulk_01",
+    "category": "Bulk & Specialized Solutions",
+    "question": "Do you provide solutions for large apartments, PGs, or offices?",
+    "answer": "Yes, we offer smart waste management solutions tailored for commercial spaces, institutions, and residential communities. The DOSTBin Twin Composter is designed specifically for this purpose.",
+    "keywords": [
+      "apartments",
+      "PG",
+      "office",
+      "commercial",
+      "institution",
+      "community",
+      "bulk",
+      "Twin Composter"
+    ]
+  },
+  {
+    "id": "bulk_02",
+    "category": "Bulk & Specialized Solutions",
+    "question": "What is the capacity and cost benefit of the Twin Composter?",
+    "answer": "It handles approximately 300 kg of bulk waste per month, serving roughly 20 homes. Priced at ₹74,999 (plus GST), this breaks down to a highly efficient one-time investment of roughly ₹3,750 per household.",
+    "keywords": [
+      "Twin Composter",
+      "capacity",
+      "300 kg",
+      "20 homes",
+      "₹74,999",
+      "₹3,750",
+      "household"
+    ]
+  },
+  {
+    "id": "bulk_03",
+    "category": "Bulk & Specialized Solutions",
+    "question": "Does DOSTBin help bulk users manage the finished compost?",
+    "answer": "Yes, we provide optional compost collection support for bulk waste generators to ensure a completely hassle-free process from start to finish.",
+    "keywords": [
+      "bulk",
+      "compost collection",
+      "collection support",
+      "finished compost"
+    ]
+  },
+  {
+    "id": "support_01",
+    "category": "Company Trust & Support",
+    "question": "Is DOSTBin a recognized technology?",
+    "answer": "Yes, it is India’s first patented automatic compost bin. The company is DPIIT recognized, supported by the Karnataka Government, and funded by prestigious institutions like IIT Madras and IIM Bangalore.",
+    "keywords": [
+      "recognized",
+      "patented",
+      "DPIIT",
+      "Karnataka Government",
+      "IIT Madras",
+      "IIM Bangalore"
+    ]
+  },
+  {
+    "id": "support_02",
+    "category": "Company Trust & Support",
+    "question": "Who founded DOSTBin?",
+    "answer": "Dr. Seema Singh, a recognized leading innovator in sustainable waste management, founded the company. She was notably featured on the Zee TV Ideabaaz show.",
+    "keywords": [
+      "founder",
+      "Dr. Seema Singh",
+      "Ideabaaz"
+    ]
+  },
+  {
+    "id": "support_03",
+    "category": "Company Trust & Support",
+    "question": "How can I contact customer support?",
+    "answer": "You can reach our team via email at info@dostbin.com or call/WhatsApp us at +91 81058 68094. You can also visit our office located at the BMS Innovation Centre (BICEP) in Yelahanka, Bengaluru.",
+    "keywords": [
+      "contact",
+      "support",
+      "email",
+      "phone",
+      "WhatsApp",
+      "office",
+      "BICEP",
+      "Yelahanka",
+      "Bengaluru"
+    ]
+  }
+]

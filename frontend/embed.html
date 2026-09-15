@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOSTBin Assistant</title>
+    <link rel="stylesheet" href="/static/widget.css" />
+  </head>
+  <body class="embed-page">
+    <div id="dostbin-chat"></div>
+    <script src="/static/widget.js"></script>
+    <script>
+      DostbinChat.mount("#dostbin-chat", { apiBase: window.location.origin });
+    </script>
+  </body>
+</html>

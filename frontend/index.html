@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOSTBin Assistant</title>
+    <link rel="stylesheet" href="/static/widget.css" />
+  </head>
+  <body class="demo-page">
+    <main class="demo-shell">
+      <header class="demo-header">
+        <h1>DOSTBin Assistant</h1>
+        <p>Ask about models, pricing, composting, and support. Answers come from the DOSTBin knowledge base via Groq.</p>
+      </header>
+      <div id="dostbin-chat"></div>
+    </main>
+    <script src="/static/widget.js"></script>
+    <script>
+      DostbinChat.mount("#dostbin-chat", { apiBase: window.location.origin });
+    </script>
+  </body>
+</html>
