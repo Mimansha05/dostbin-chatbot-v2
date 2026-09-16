@@ -84,6 +84,8 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 Put a reverse proxy (nginx, Caddy, or a cloud load balancer) in front of Uvicorn and serve HTTPS.
 
+This backend is sized for Render Free (512 MB RAM). Retrieval uses TF-IDF + cosine similarity, not sentence-transformers, PyTorch, or FAISS.
+
 ## API endpoints
 
 ### `GET /health`
@@ -198,7 +200,7 @@ This API is a public FAQ assistant. If you need it private, put authentication o
 | `GROQ_API_KEY is not configured` | `.env` exists in the project root and the process was restarted. |
 | `Groq API rejected the request` | Key validity at console.groq.com and that the key has access. |
 | `GROQ_MODEL is not available` | Use a current Groq production model such as `openai/gpt-oss-120b`. Check `GET https://api.groq.com/openai/v1/models` with your key. |
-| `FAISS index not found` | Run `python backend/build_index.py`. |
+| `TF-IDF index not found` | Run `python backend/build_index.py`. |
 | Widget cannot reach API from WordPress | API must be HTTPS and publicly reachable; iframe `src` should be `https://YOUR-API-HOST/embed`. |
 | CORS error with JS embed | Add the WordPress origin to `ALLOWED_ORIGINS`. The iframe method does not need CORS. |
 | Empty or fallback answers | The question may not match FAQ content. Check `data/dostbin_faq.json` and rebuild the index. |

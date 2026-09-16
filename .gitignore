@@ -6,6 +6,7 @@ __pycache__/
 .env.*
 !.env.example
 vectorstore/*.index
+vectorstore/*.joblib
 vectorstore/metadata.json
 .pytest_cache/
 .coverage

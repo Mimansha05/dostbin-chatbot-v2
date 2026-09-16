@@ -3,20 +3,18 @@ import os
 import re
 from functools import lru_cache
 
-import faiss
-import numpy as np
-from sentence_transformers import SentenceTransformer
+from joblib import load
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VECTORSTORE_DIR = os.path.join(BASE_DIR, "vectorstore")
-INDEX_FILE = os.path.join(VECTORSTORE_DIR, "dostbin_faq.index")
+INDEX_FILE = os.path.join(VECTORSTORE_DIR, "tfidf_index.joblib")
 METADATA_FILE = os.path.join(VECTORSTORE_DIR, "metadata.json")
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
 DEFAULT_TOP_K = 3
-MIN_SIMILARITY_SCORE = 0.15
-LEXICAL_WEIGHT = 0.45
+MIN_SIMILARITY_SCORE = 0.08
+LEXICAL_WEIGHT = 0.6
 STOPWORDS = {
     "a",
     "an",
@@ -49,21 +47,17 @@ STOPWORDS = {
 
 
 @lru_cache(maxsize=1)
-def get_embedding_model():
-    try:
-        return SentenceTransformer(EMBEDDING_MODEL, local_files_only=True)
-    except OSError:
-        return SentenceTransformer(EMBEDDING_MODEL)
-
-
-@lru_cache(maxsize=1)
 def get_index():
     if not os.path.exists(INDEX_FILE):
         raise FileNotFoundError(
-            f"FAISS index not found at {INDEX_FILE}. Run backend/build_index.py first."
+            f"TF-IDF index not found at {INDEX_FILE}. Run backend/build_index.py first."
         )
 
-    return faiss.read_index(INDEX_FILE)
+    payload = load(INDEX_FILE)
+    if not isinstance(payload, dict) or "vectorizer" not in payload or "matrix" not in payload:
+        raise ValueError("TF-IDF index is invalid. Rebuild it with backend/build_index.py.")
+
+    return payload
 
 
 @lru_cache(maxsize=1)
@@ -94,9 +88,6 @@ def get_metadata():
 
     if not isinstance(metadata.get("faqs"), list):
         raise ValueError("Vectorstore metadata field 'faqs' must be a list.")
-
-    if not isinstance(metadata.get("index_records"), list):
-        raise ValueError("Vectorstore metadata field 'index_records' must be a list.")
 
     return metadata
 
@@ -147,61 +138,43 @@ def search_faqs(query, top_k=DEFAULT_TOP_K):
     index = get_index()
     metadata = get_metadata()
     faqs = metadata["faqs"]
-    index_records = metadata["index_records"]
-    model = get_embedding_model()
+    vectorizer = index["vectorizer"]
+    matrix = index["matrix"]
 
-    query_embedding = model.encode(
-        [query.strip()],
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        show_progress_bar=False,
-    )
-    query_embedding = np.asarray(query_embedding, dtype="float32")
+    if matrix.shape[0] != len(faqs):
+        raise ValueError("TF-IDF index does not match FAQ metadata. Rebuild the index.")
+
+    query_vector = vectorizer.transform([query.strip()])
+    similarities = cosine_similarity(query_vector, matrix).ravel()
 
     requested_top_k = max(int(top_k), 1)
-    search_k = min(index.ntotal, max(requested_top_k * 8, requested_top_k))
-    scores, indices = index.search(query_embedding, search_k)
+    ranked_matches = []
 
-    matches_by_faq = {}
-    for score, record_index in zip(scores[0], indices[0]):
-        if record_index < 0 or record_index >= len(index_records):
+    for faq_index, faq in enumerate(faqs):
+        similarity = float(similarities[faq_index])
+        lexical = lexical_score(query, faq)
+
+        if similarity < MIN_SIMILARITY_SCORE and lexical <= 0:
             continue
 
-        index_record = index_records[record_index]
-        faq_index = index_record["faq_index"]
-        if faq_index < 0 or faq_index >= len(faqs):
-            continue
-
-        current_match = matches_by_faq.get(faq_index)
-        if current_match is None or score > current_match["similarity_score"]:
-            faq = faqs[faq_index]
-            lexical = lexical_score(query, faq)
-            matches_by_faq[faq_index] = {
-                "similarity_score": float(score),
+        ranked_matches.append(
+            {
+                "faq": faq,
+                "similarity_score": similarity,
                 "lexical_score": lexical,
-                "ranking_score": float(score) + (lexical * LEXICAL_WEIGHT),
-                "matched_representation": index_record.get("representation"),
+                "ranking_score": similarity + (lexical * LEXICAL_WEIGHT),
             }
+        )
 
-    ranked_matches = sorted(
-        matches_by_faq.items(),
-        key=lambda item: item[1]["ranking_score"],
-        reverse=True,
-    )
+    ranked_matches.sort(key=lambda item: item["ranking_score"], reverse=True)
 
     results = []
-    for faq_index, match in ranked_matches:
-        if match["similarity_score"] < MIN_SIMILARITY_SCORE and match["lexical_score"] <= 0:
-            continue
-
-        faq = dict(faqs[faq_index])
-        faq["similarity_score"] = match["similarity_score"]
-        faq["lexical_score"] = match["lexical_score"]
-        faq["ranking_score"] = match["ranking_score"]
-        faq["matched_representation"] = match["matched_representation"]
-        results.append(faq)
-
-        if len(results) >= requested_top_k:
-            break
+    for match in ranked_matches[:requested_top_k]:
+        ranked_faq = dict(match["faq"])
+        ranked_faq["similarity_score"] = match["similarity_score"]
+        ranked_faq["lexical_score"] = match["lexical_score"]
+        ranked_faq["ranking_score"] = match["ranking_score"]
+        ranked_faq["matched_representation"] = "tfidf"
+        results.append(ranked_faq)
 
     return results
