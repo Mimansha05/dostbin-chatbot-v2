@@ -87,13 +87,14 @@ body {
   background: #fbfdfb;
 }
 
-.dostbin-bubble {
-  max-width: 88%;
-  padding: 10px 12px;
-  border-radius: 14px;
-  line-height: 1.45;
-  white-space: pre-wrap;
-  word-break: break-word;
+.dostbin-bubble a {
+  color: inherit;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.dostbin-bubble.bot a {
+  color: var(--dostbin-green-dark);
 }
 
 .dostbin-bubble.bot {

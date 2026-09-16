@@ -33,8 +33,9 @@ def test_ask_rejects_empty_question():
     assert response.status_code == 400
 
 
+@patch("backend.main.find_faq_answer", return_value=None)
 @patch("backend.main.search_faqs")
-def test_chat_returns_fallback_without_llm_when_unrelated(mock_search):
+def test_chat_returns_fallback_without_llm_when_unrelated(mock_search, _mock_faq):
     mock_search.return_value = [
         {
             "id": "unrelated",
@@ -55,9 +56,10 @@ def test_chat_returns_fallback_without_llm_when_unrelated(mock_search):
     mock_generate.assert_not_called()
 
 
+@patch("backend.main.find_faq_answer", return_value=None)
 @patch("backend.main.search_faqs")
 @patch("backend.main.generate_answer", return_value="The Premium model is automatic.")
-def test_chat_success(mock_generate, mock_search):
+def test_chat_success(mock_generate, mock_search, _mock_faq):
     mock_search.return_value = [
         {
             "id": "product_01",
@@ -85,9 +87,10 @@ def test_chat_success(mock_generate, mock_search):
     mock_generate.assert_called_once()
 
 
+@patch("backend.main.find_faq_answer", return_value=None)
 @patch("backend.main.search_faqs")
 @patch("backend.main.generate_answer", return_value="The Premium model is automatic.")
-def test_ask_success(mock_generate, mock_search):
+def test_ask_success(mock_generate, mock_search, _mock_faq):
     mock_search.return_value = [
         {
             "id": "product_01",

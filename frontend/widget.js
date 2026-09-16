@@ -39,8 +39,15 @@
     var input = widget.querySelector("input");
     var button = widget.querySelector("button");
 
+    function linkify(escapedText) {
+      return escapedText.replace(
+        /(https?:\/\/[^\s<]+)/g,
+        '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+      );
+    }
+
     function addBubble(text, className) {
-      messages.appendChild(createEl("div", "dostbin-bubble " + className, escapeHtml(text)));
+      messages.appendChild(createEl("div", "dostbin-bubble " + className, linkify(escapeHtml(text))));
       messages.scrollTop = messages.scrollHeight;
     }
 

@@ -16,6 +16,7 @@ from backend.config import (
     groq_configured,
     validate_startup,
 )
+from backend.faq_matcher import find_faq_answer
 from backend.llm import (
     LLMConfigurationError,
     LLMGenerationError,
@@ -111,6 +112,17 @@ def enforce_rate_limit(request: Request):
         )
 
 
+def faq_source_payload(match):
+    return [
+        {
+            "id": match.get("id"),
+            "type": "faq",
+            "question": match.get("question"),
+            "score": match.get("score"),
+        }
+    ]
+
+
 def retrieve_grounded_results(question):
     try:
         results = search_faqs(question, top_k=DEFAULT_TOP_K)
@@ -185,6 +197,14 @@ def ask(request_body: AskRequest, request: Request):
     if not question:
         raise HTTPException(status_code=400, detail="Question cannot be empty.")
 
+    faq_match = find_faq_answer(question)
+    if faq_match:
+        return {
+            "question": question,
+            "answer": faq_match["answer"],
+            "sources": faq_source_payload(faq_match),
+        }
+
     grounded_results = retrieve_grounded_results(question)
     answer = generate_grounded_answer(question, grounded_results)
 
@@ -205,6 +225,14 @@ def chat(request_body: ChatRequest, request: Request):
             status_code=400,
             content={"success": False, "error": "Message cannot be empty."},
         )
+
+    faq_match = find_faq_answer(message)
+    if faq_match:
+        return {
+            "success": True,
+            "response": faq_match["answer"],
+            "sources": faq_source_payload(faq_match),
+        }
 
     try:
         grounded_results = retrieve_grounded_results(message)
